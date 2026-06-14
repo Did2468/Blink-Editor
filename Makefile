@@ -1,5 +1,8 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -pedantic -std=c99
+CFLAGS=-Wall -Wextra -pedantic -std=c99 \
+       -D_DEFAULT_SOURCE \
+       -D_BSD_SOURCE \
+       -D_GNU_SOURCE
 SRC_DIR=src
 OBJ_DIR=obj
 BIN=blink
@@ -26,18 +29,18 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Installation paths and rules
+# Installation
 PREFIX ?= /usr/local
 BINDIR ?= $(PREFIX)/bin
 
 install: release
 	mkdir -p $(DESTDIR)$(BINDIR)
-	cp -f $(BIN) $(DESTDIR)$(BINDIR)/$(BIN)
-	chmod 755 $(DESTDIR)$(BINDIR)/$(BIN)
+	install -m 755 $(BIN) $(DESTDIR)$(BINDIR)/$(BIN)
+	@echo "✓ Installed blink to $(DESTDIR)$(BINDIR)/$(BIN)"
 
 uninstall:
 	rm -f $(DESTDIR)$(BINDIR)/$(BIN)
+	@echo "✓ Uninstalled blink"
 
 clean:
 	rm -rf $(OBJ_DIR) $(BIN)
-

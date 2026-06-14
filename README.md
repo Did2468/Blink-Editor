@@ -31,12 +31,8 @@ To compile a high-performance, optimized **release release profile**:
 ```bash
 make release
 ```
+Dont worry if it throws some error they are just warnings and not real errors(some linux systems do throw errors)
 *Outputs a release build bin `blink` inside the directory.*
-
-To compile a clean, non-optimized **debug profile** with debugging flags:
-```bash
-make debug
-```
 
 ### 2. Global Installation
 To install `blink` globally on your system so that you can run it from anywhere like `blink <filename>`:
